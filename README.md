@@ -1,1 +1,1 @@
-# rails-cat-app
+# Rails Cat App
