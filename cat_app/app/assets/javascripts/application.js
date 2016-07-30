@@ -14,3 +14,30 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function renderCat( cat ) {
+  console.log(cat)
+  console.log(cat.pic.response.data.images.image.source_url)
+  var $container = $('#cats');
+  var $cat = $('<li class="cat">');
+  var $name = $('<p>')
+  $name.text( cat.quote.facts );
+  var $img = $('<img>').attr('src', cat.pic.response.data.images.image.url)
+  // render the image
+  $cat.append( $name );
+  $cat.append($img);
+  $container.append( $cat );
+}
+
+function getCats() {
+  $.get('/cats').done(function( cat ) {
+    console.log(cats)
+    renderCat( cat );
+    })
+}
+
+
+
+$(function() {
+  getCats();
+})
