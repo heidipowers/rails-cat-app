@@ -24,7 +24,7 @@ function getCats() {
     })
 }
 
-//get all the facts from the db
+//get the facts from the db
 function getFacts(){
   $.get('/facts')
   .done((response) =>{
@@ -46,19 +46,24 @@ function getFacts(){
   })
  }
 
-//render all the cat from the api call
+//render the cat image and the text from the api call(s)
 function renderCat( cat ) {
   console.log(cat)
   console.log(cat.pic.response.data.images.image.source_url)
-  var $container = $('#community');
-  var $cat = $('<li class="cat">');
-  var $name = $('<p>')
+  let $container = $('#community');
+  let $cat = $('<li class="cat">');
+  let $name = $('<p>')
+  let $imageAddBut = $('<button class="add-image">').text("Add Image")
   $name.text( cat.fact.facts );
-  var $img = $('<img>').attr('src', cat.pic.response.data.images.image.url)
+  let src = cat.pic.response.data.images.image.url
+  let $img = $('<img>').attr('src', src)
   // render the image
-  $cat.append( $name );
-  $cat.append($img);
+  $cat.append( $name, $img, $imageAddBut );
   $container.append( $cat );
+
+  $imageAddBut.on('click', function(e){
+    e.preventDefault
+    addImage(src)})
 }
 
 
@@ -91,6 +96,21 @@ function appendImages(image){
 
 }
 
+//add image to the images db
+function addImage(src){
+   event.preventDefault()
+
+   let data = {
+     user: 'Anon',
+     url: src
+   }
+
+   $.post('/images', data).done((response) => {
+     appendImages(response);
+   })
+
+ }
+
 //delete info from the facts db
 function deleteFact(e){
    let id = $(e.target).parent().attr('class')
@@ -122,6 +142,7 @@ function deleteFact(e){
      $(e.target).parent().remove();
    })
  }
+
 
 
 
