@@ -59,7 +59,9 @@ function getFacts(){
 //render the cat image and the text from the api call(s)
 function renderImage( cat ) {
 
-  let src = cat.pic.response.data.images.image.url
+  let src = cat.pic.response.data.images.image.url;
+  let copyright = cat.pic.response.data.images.image.source_url;
+  let $link = $('<a target="_blank">').attr('href', copyright).text("Source")
   let $imgContainer = $('#community-image');
   let $img = $('<img>').attr('src', src);
   let $imageAddBut = $('<button class="add-image add-btn">').text("Add Image")
@@ -67,12 +69,12 @@ function renderImage( cat ) {
 
 
   // render the image
-  $imgContainer.append( $img, $imageAddBut, $imageNewBut );
+  $imgContainer.append( $img, $link, $imageAddBut, $imageNewBut );
 
   //add image to db
   $imageAddBut.on('click', function(e){
     e.preventDefault;
-    addImage(src);
+    addImage(src, copyright);
     $imgContainer.empty();
     getNewImage();
   })
@@ -158,23 +160,23 @@ function appendFacts(fact){
 //append all the images to the page from the images db
 function appendImages(image){
 
-   let $author = $('<p>').text(image.user)
-   let $content = $('<img>').attr("src", image.url)
+   let $source = $('<a target="_blank" class="source">').attr('href', image.user).text("source");
+   let $img = $('<img>').attr("src", image.url);
    let $deleteButton = $('<button>').addClass("delete").text('Delete')
    let $div = $('<div>').attr('class', image.id)
 
-   $('#images').prepend($div.append($author, $content, $deleteButton))
+   $('#images').prepend($div.append($img, $source, $deleteButton))
 
    $deleteButton.click(deleteImage)
 
 }
 
 //add image to the images db
-function addImage(src){
+function addImage(src, source){
    event.preventDefault()
 
    let data = {
-     user: 'Anon',
+     user: source,
      url: src
    }
 
