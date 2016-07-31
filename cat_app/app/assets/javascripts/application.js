@@ -122,14 +122,14 @@ function renderFact( cat ) {
 function appendFacts(fact){
 
    let $user = $('<p>').text(fact.user);
-   let $fact = $('<p>').text(fact.info);
+   let $fact = $('<p>').text(fact.info).attr('class', fact.id);
    let $deleteButton = $('<button>').addClass("delete").text('Delete');
    let $editButton = $('<button>').addClass('update').text('Fix this fact');
    let $div = $('<div>').attr('class', fact.id);
 
    let $editDiv = $('<div class="hide">');
    let $editForm = $('<form>').attr('class', fact.id);
-   let $formText = $('<textarea>').attr('placeholder', fact.info);
+   let $formText = $('<textarea class="edit">').text(fact.info);
    //let $formUser = $('<input>').attr('placeholder', 'enter your name');
    let $formBut  = $('<button>').text('Fix It!');
 
@@ -149,14 +149,9 @@ function appendFacts(fact){
    $formBut.on('click', (e)=>{
     e.preventDefault();
     let $newData = $formText.val();
-    console.log($newData)
-    editFact($newData, fact.id);
+    editFact(e, $newData, fact.id);
+    $editDiv.slideToggle('slow');
    });
-   // $editButton.on('click', function(e){
-   //  e.preventDefault();
-   //  console.log("click it or ticket");
-   //  getEditForm();
-   // })
 }
 
 
@@ -204,47 +199,27 @@ function addFact(fact){
  }
 
  //edit the fact in the db
-function editFact( fact, id ){
-  event.preventDefault();
+function editFact(e, fact, id ){
+  e.preventDefault();
   id = parseInt(id);
   let url = '/facts/'+id;
 
-  let data = {
-    info: fact
-  };
-
-  console.log(data)
-
+  let data = {info: fact};
+  let $pP = $(e.target).parent().parent().parent().find('p')
+  console.log($pP)
   $.ajax({
      url: url,
      method: 'put',
      data: data
-   }).done(function(){
-    console.log(data)
+   }).done(function(arguements){
+    console.log(arguements)
+    //$form.empty();
+   $pP.text(arguements.info)
 
-     //$(e.target).parent().remove();
    })
 
 }
 
-function updateStudent(e){
-  e.preventDefault();
-  let url = $(e.target).attr('data-url');
-  let $children = $(e.target).children()
-  let data =  {
-                name: $children.eq(0).val(),
-                age : $children.eq(1).val()
-              }
-  $.ajax({
-    url: url,
-    method: 'put',
-    data: data
-  }).done(function(){
-    console.log(arguments);
-    let $success = $('<h4>').text('Success!')
-    $('#container').append($success)
-  })
-}
 
 //delete info from the facts db
 function deleteFact(e){
