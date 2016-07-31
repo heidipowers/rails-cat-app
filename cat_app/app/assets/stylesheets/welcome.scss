@@ -8,9 +8,42 @@ $width: 187px;
 $grey1: #D8D8D8 ;
 $grey2: #333;
 $grey3: #F8F8F8;
+$grey4: #B0B0B0;
 
 body {
   background-color: $grey3;
+}
+
+a {
+  text-decoration: none;
+  color: $grey2;
+}
+
+button {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 1px;
+  background-color: $grey4;
+  border: none;
+  font-family: 'Alex Brush', cursive;;
+}
+
+button:hover {
+  background-color: $grey1;
+}
+
+.image-delete {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 1em;
+  height: 1em;
+  background-image: url("./x.svg");
+  margin: 5px;
+}
+
+.fact-delete, .update {
+  margin: 0 0 1em 1em;
 }
 
 .hide {
@@ -28,7 +61,8 @@ header {
 
 
 h1 {
-  font-family: 'Righteous', cursive;
+
+  font-family:'Lily Script One', cursive;
   font-size: 4em;
   border-bottom: 2px solid;
   line-height: 0;
@@ -37,7 +71,7 @@ h1 {
 }
 
 h3 {
-  font-family: 'Righteous', cursive;
+  font-family: 'Akronim', cursive;
   font-size: 2em;
   margin-bottom: 0;
 }
@@ -71,11 +105,15 @@ h3 {
 
 #facts div {
   margin: 20px 0;
+  background-color: rgba(255,255,255, .5);
+  position: relative;
 }
 
 #facts p {
+  padding: 1em;
   font-size: 1.2em;
   color: $grey2;
+  font-family: 'Roboto', sans-serif;
 }
 
 .overlay {
@@ -86,16 +124,23 @@ h3 {
 }
 
 .hidden  {
-  position: absolute;
-  cursor: pointer;
   display: none;
+}
+
+.hideImage {
+  position: absolute;
+    cursor: pointer;
+    width: 80%;
+    margin: 0 10%;
+    top: 46%;
 }
 
 
 #images div a {
   position: absolute;
-  bottom: 05%;
-  left: 05%;
+  bottom: 5%;
+  left: 5%;
+  font-family: 'Alex Brush', cursive;
 }
 
 .col-4 {

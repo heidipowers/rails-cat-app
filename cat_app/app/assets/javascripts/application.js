@@ -125,7 +125,7 @@ function appendFacts(fact){
 
    let $user = $('<p>').text(fact.user);
    let $fact = $('<p>').text(fact.info).attr('class', fact.id);
-   let $deleteButton = $('<button>').addClass("delete").text('Delete');
+   let $deleteButton = $('<button>').addClass("delete fact-delete").text('Delete');
    let $editButton = $('<button>').addClass('update').text('Fix this fact');
    let $div = $('<div>').attr('class', fact.id);
 
@@ -162,20 +162,16 @@ function appendImages(image){
 
    let $source = $('<a target="_blank" class="source">').attr('href', image.user).text("source");
    let $overlay = $('<div class="overlay">');
-   let $deleteButton = $('<button>').addClass("delete hidden").text('Delete')
+   let $deleteButton = $('<button>').addClass("delete image-delete");
    let $div = $('<div>').addClass(image.id + " image")
               .css({'background-image':'url(' + image.url + ')',
                     'background-size': 'cover'});
 
-   //$overlay.append($source, $deleteButton)
+   $('#images').prepend($div.append($source, $deleteButton));
 
-   $('#images').prepend($div.append($overlay, $source, $deleteButton));
+   $($overlay).hover(opacityIn, opacityOut);
 
    $deleteButton.click(deleteImage);
-   let $overlayEffect = $('.overlay');
-   $overlayEffect.hover(hoverOver, hoverOut);
-
-
 
 }
 
@@ -230,18 +226,13 @@ function editFact(e, fact, id ){
 
 }
 
-function hoverOver(e){
-  let item = $(e.target);
-  $(this).css('opacity', '.5')
-  $('.delete').removeClass('hidden')
+function opacityIn(e){
+  $(this).css('opacity', '.5');
 }
 
-function hoverOut(e){
+function opacityOut(e){
   $(this).css('opacity', '0');
-  $('.delete').addClass('hidden')
-
 }
-
 
 //delete info from the facts db
 function deleteFact(e){
