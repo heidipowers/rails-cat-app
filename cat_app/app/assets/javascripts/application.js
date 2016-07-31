@@ -16,12 +16,24 @@
 //= require_tree .
 
 
-//get the cat image for header
-function getCats() {
+//hit up those API's!
+function getCat() {
   $.get('/cats').done(function( cat ) {
-    console.log(cat)
-    renderCat( cat );
+    renderImage( cat );
+    renderFact( cat );
     })
+}
+
+function getNewImage() {
+  $.get('/cats').done(function( cat ) {
+    renderImage( cat );
+  })
+}
+
+function getNewFact() {
+  $.get('/cats').done(function( cat ) {
+    renderFact( cat );
+  })
 }
 
 //get the facts from the db
@@ -29,7 +41,6 @@ function getFacts(){
   $.get('/facts')
   .done((response) =>{
     response.map((fact)=>{
-      console.log(fact)
        appendFacts(fact)
     })
   })
@@ -40,47 +51,114 @@ function getFacts(){
   $.get('/images')
   .done((response) =>{
     response.map((image)=>{
-      console.log(image)
        appendImages(image)
     })
   })
  }
 
 //render the cat image and the text from the api call(s)
-function renderCat( cat ) {
-  console.log(cat)
-  console.log(cat.pic.response.data.images.image.source_url)
-  let $container = $('#community');
-  let $cat = $('<li class="cat">');
-  let $name = $('<p>')
-  let $imageAddBut = $('<button class="add-image">').text("Add Image")
-  $name.text( cat.fact.facts );
-  let src = cat.pic.response.data.images.image.url
-  let $img = $('<img>').attr('src', src)
-  // render the image
-  $cat.append( $name, $img, $imageAddBut );
-  $container.append( $cat );
+function renderImage( cat ) {
 
+  let src = cat.pic.response.data.images.image.url
+  let $imgContainer = $('#community-image');
+  let $img = $('<img>').attr('src', src);
+  let $imageAddBut = $('<button class="add-image add-btn">').text("Add Image")
+  let $imageNewBut = $('<button class="new-image new-btn">').text("Get New Image")
+
+
+  // render the image
+  $imgContainer.append( $img, $imageAddBut, $imageNewBut );
+
+  //add image to db
   $imageAddBut.on('click', function(e){
+    e.preventDefault;
+    addImage(src);
+    $imgContainer.empty();
+    getNewImage();
+  })
+
+  //hit up the api for new image
+  $imageNewBut.on('click', function(e){
+    e.preventDefault();
+    $imgContainer.empty();
+    getNewImage();
+
+  })
+
+}
+
+function renderFact( cat ) {
+
+  let $factContainer = $('#community-fact');
+  let $factText = cat.fact.facts.toString();
+  let $fact = $('<p>').text($factText);
+  let $factAddBut = $('<button class="add-fact add-btn">').text("Add Fact");
+  let $factNewBut = $('<button class="new-fact new-btn">').text("Get New Fact")
+
+
+  //render the fact
+  $factContainer.append( $fact, $factAddBut, $factNewBut );
+
+  //add fact to db
+  $factAddBut.on('click', function(e){
     e.preventDefault
-    addImage(src)})
+    addFact($factText);
+    $factContainer.empty()
+    getNewFact();
+
+  })
+
+  //hit up the api for new fact
+  $factNewBut.on('click', function(e){
+    e.preventDefault();
+    $factContainer.empty();
+    getNewFact();
+  })
+
 }
 
 
 //append all the facts to the page from facts db
 function appendFacts(fact){
 
-   let $author = $('<p>').text(fact.user)
-   let $content = $('<p>').text(fact.info)
-   let $deleteButton = $('<button>').addClass("delete").text('Delete')
-   let $editButton = $('<button>').addClass('update').text('Update')
-   let $div = $('<div>').attr('class', fact.id)
+   let $user = $('<p>').text(fact.user);
+   let $fact = $('<p>').text(fact.info);
+   let $deleteButton = $('<button>').addClass("delete").text('Delete');
+   let $editButton = $('<button>').addClass('update').text('Fix this fact');
+   let $div = $('<div>').attr('class', fact.id);
 
-   $('#facts').prepend($div.append($author, $content, $deleteButton, $editButton))
+   let $editDiv = $('<div class="hide">');
+   let $editForm = $('<form>').attr('class', fact.id);
+   let $formText = $('<textarea>').attr('placeholder', fact.info);
+   //let $formUser = $('<input>').attr('placeholder', 'enter your name');
+   let $formBut  = $('<button>').text('Fix It!');
 
-   $deleteButton.click(deleteFact)
-   //$editButton.click(editPost)
+
+
+   $editForm.append($formText, $formBut);
+   $editDiv.append($editForm);
+
+   $('#facts').prepend($div.append($fact, $deleteButton, $editButton, $editDiv))
+
+   $deleteButton.click(deleteFact);
+   $editButton.on('click', function(e){
+    e.preventDefault();
+    $editDiv.slideToggle('slow');
+   })
+
+   $formBut.on('click', (e)=>{
+    e.preventDefault();
+    let $newData = $formText.val();
+    console.log($newData)
+    editFact($newData, fact.id);
+   });
+   // $editButton.on('click', function(e){
+   //  e.preventDefault();
+   //  console.log("click it or ticket");
+   //  getEditForm();
+   // })
 }
+
 
 //append all the images to the page from the images db
 function appendImages(image){
@@ -111,18 +189,73 @@ function addImage(src){
 
  }
 
+ //add fact to the facts db
+function addFact(fact){
+   event.preventDefault()
+   let data = {
+     user: 'Anon',
+     info: fact
+   }
+
+   $.post('/facts', data).done((response) => {
+     appendFacts(response);
+   })
+
+ }
+
+ //edit the fact in the db
+function editFact( fact, id ){
+  event.preventDefault();
+  id = parseInt(id);
+  let url = '/facts/'+id;
+
+  let data = {
+    info: fact
+  };
+
+  console.log(data)
+
+  $.ajax({
+     url: url,
+     method: 'put',
+     data: data
+   }).done(function(){
+    console.log(data)
+
+     //$(e.target).parent().remove();
+   })
+
+}
+
+function updateStudent(e){
+  e.preventDefault();
+  let url = $(e.target).attr('data-url');
+  let $children = $(e.target).children()
+  let data =  {
+                name: $children.eq(0).val(),
+                age : $children.eq(1).val()
+              }
+  $.ajax({
+    url: url,
+    method: 'put',
+    data: data
+  }).done(function(){
+    console.log(arguments);
+    let $success = $('<h4>').text('Success!')
+    $('#container').append($success)
+  })
+}
+
 //delete info from the facts db
 function deleteFact(e){
    let id = $(e.target).parent().attr('class')
    id = parseInt(id);
 
    let url = '/facts/'+id
-   console.log(url, id)
    $.ajax({
      url: url,
      method: 'delete'
    }).done(function(){
-     console.log(arguments);
      $(e.target).parent().remove();
    })
  }
@@ -133,12 +266,10 @@ function deleteFact(e){
    id = parseInt(id);
 
    let url = '/images/'+id
-   console.log(url, id)
    $.ajax({
      url: url,
      method: 'delete'
    }).done(function(){
-     console.log(arguments);
      $(e.target).parent().remove();
    })
  }
@@ -146,10 +277,8 @@ function deleteFact(e){
 
 
 
-
-
 $(function() {
-  getCats();
+  getCat();
   getFacts();
   getImages();
 })
