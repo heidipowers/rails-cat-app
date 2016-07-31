@@ -1,32 +1,52 @@
-<h1>Cats Page</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+
+<header>
+  <div class="loader"></div>
+  <h1 class="center"><span class="letter-logo"></span>ommunity Cats</h1>
+  <hr>
+</header>
 
 
 <div id="cats-container">
-  <h3>Community Cats</h3>
-  <div class="row">
+  <div class="row contain">
     <div id="community-fact" class="col-6">
 
-        <!--  cats will be rendered -->
+        <!--  cat fact will be rendered from api-->
 
     </div>
     <div id="community-image" class="col-6">
 
-        <!--  cats will be rendered -->
+        <!--  cat image will be rendered from api-->
 
     </div>
-
   </div>
 </div>
 
-<div id="facts-container">
-<h3>Cats Facts</h3>
-<ul id="facts">
-</ul>
-</div>
+<div class="bottom">
+  <div class="row contain">
 
-<div id="images-container">
-<h3>Cats Images</h3>
-<ul id="images">
-</ul>
+    <section class="col-4 col">
+      <div id="facts-container">
+        <h3><%= image_tag("cat.svg", class:"cat", :alt => "cat loader") %>Facts</h3>
+        <hr>
+          <section id="facts">
+
+            <!--  cat facts will be rendered from db -->
+
+          </section>
+      </div>
+    </section>
+
+    <section class="col-8 col">
+      <div id="images-container">
+        <h3><%= image_tag("cat.svg", class:"cat", :alt => "cat loader") %>Images</h3>
+        <hr>
+          <section id="images">
+
+            <!--  cat images will be rendered from db -->
+
+          </section>
+      </div>
+    </section>
+
+  </div>
 </div>

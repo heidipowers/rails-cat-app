@@ -2,7 +2,131 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$height: 187px;
+$width: 187px;
+
+$grey1: #D8D8D8 ;
+$grey2: #333;
+$grey3: #F8F8F8;
+
+body {
+  background-color: $grey3;
+}
 
 .hide {
   display:none;
+}
+
+.contain {
+  max-width: 80em;
+  margin: 0 auto;
+}
+
+header {
+  background: $grey1;
+}
+
+
+h1 {
+  font-family: 'Righteous', cursive;
+  font-size: 4em;
+  border-bottom: 2px solid;
+  line-height: 0;
+  margin-top: 0;
+  padding-top: 1em;
+}
+
+h3 {
+  font-family: 'Righteous', cursive;
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('./cat.svg') 50% 50% no-repeat rgb(249,249,249);
+}
+
+#images .image {
+  width: $width;
+  height: $height;
+  display: inline-block;
+  margin: 15px;
+  position: relative;
+  background-color: #000;
+}
+
+#cats-container {
+  min-height: 300px;
+}
+
+#facts div {
+  margin: 20px 0;
+}
+
+#facts p {
+  font-size: 1.2em;
+  color: $grey2;
+}
+
+.overlay {
+  width: $width;
+  height: $height;
+  background-color: #000;
+  opacity: 0;
+}
+
+.hidden  {
+  position: absolute;
+  cursor: pointer;
+  display: none;
+}
+
+
+#images div a {
+  position: absolute;
+  bottom: 05%;
+  left: 05%;
+}
+
+.col-4 {
+  width: 34%;
+  float: left;
+  padding: 0 5%;
+}
+
+.col-8 {
+  width: 51%;
+  float: left;
+  padding-right: 5%;
+}
+
+.col:after {
+  clear: both;
+}
+
+.cat {
+  transform: rotate(50deg);
+}
+
+.letter-logo {
+  background-image: url('./cat.svg');
+  display:inline-block;
+  background-size: cover;
+  height: 2em;
+  width: 2em;
+  repeat: no-repeat;
+}
+
+.bottom {
+  background-color: #efefef;
 }

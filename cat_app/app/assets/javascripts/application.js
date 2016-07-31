@@ -161,13 +161,21 @@ function appendFacts(fact){
 function appendImages(image){
 
    let $source = $('<a target="_blank" class="source">').attr('href', image.user).text("source");
-   let $img = $('<img>').attr("src", image.url);
-   let $deleteButton = $('<button>').addClass("delete").text('Delete')
-   let $div = $('<div>').attr('class', image.id)
+   let $overlay = $('<div class="overlay">');
+   let $deleteButton = $('<button>').addClass("delete hidden").text('Delete')
+   let $div = $('<div>').addClass(image.id + " image")
+              .css({'background-image':'url(' + image.url + ')',
+                    'background-size': 'cover'});
 
-   $('#images').prepend($div.append($img, $source, $deleteButton))
+   //$overlay.append($source, $deleteButton)
 
-   $deleteButton.click(deleteImage)
+   $('#images').prepend($div.append($overlay, $source, $deleteButton));
+
+   $deleteButton.click(deleteImage);
+   let $overlayEffect = $('.overlay');
+   $overlayEffect.hover(hoverOver, hoverOut);
+
+
 
 }
 
@@ -222,6 +230,18 @@ function editFact(e, fact, id ){
 
 }
 
+function hoverOver(e){
+  let item = $(e.target);
+  $(this).css('opacity', '.5')
+  $('.delete').removeClass('hidden')
+}
+
+function hoverOut(e){
+  $(this).css('opacity', '0');
+  $('.delete').addClass('hidden')
+
+}
+
 
 //delete info from the facts db
 function deleteFact(e){
@@ -251,11 +271,15 @@ function deleteFact(e){
    })
  }
 
-
-
-
-$(function() {
-  getCat();
+$(document).ready(function() {
+  //getCat();
   getFacts();
   getImages();
+
+  $(window).load(function() {
+  $(".loader").fadeOut("slow");
 })
+
+
+});
+
