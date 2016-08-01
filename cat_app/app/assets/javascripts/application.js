@@ -267,7 +267,7 @@ function deleteFact(e){
  }
 
 $(document).ready(function() {
-  getCat();
+  //getCat();
   getFacts();
   getImages();
 
