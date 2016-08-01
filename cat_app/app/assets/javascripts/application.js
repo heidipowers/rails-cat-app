@@ -26,13 +26,17 @@ function getCat() {
 
 function getNewImage() {
   $.get('/cats').done(function( cat ) {
+    $('.loading2').hide();
     renderImage( cat );
   })
 }
 
 function getNewFact() {
+
   $.get('/cats').done(function( cat ) {
+    $('.loading').hide()
     renderFact( cat );
+
   })
 }
 
@@ -76,6 +80,7 @@ function renderImage( cat ) {
   //add image to db
   $imageAddBut.on('click', function(e){
     e.preventDefault;
+    $('.loading2').show();
     addImage(src, copyright);
     $imgContainer.empty();
     getNewImage();
@@ -83,6 +88,7 @@ function renderImage( cat ) {
 
   //hit up the api for new image
   $imageNewBut.on('click', function(e){
+    $('.loading2').show();
     e.preventDefault();
     $imgContainer.empty();
     getNewImage();
@@ -108,6 +114,7 @@ function renderFact( cat ) {
   //add fact to db
   $factAddBut.on('click', function(e){
     e.preventDefault()
+    $('.loading').show()
     addFact($factText);
     $factContainer.empty()
     getNewFact();
@@ -117,6 +124,7 @@ function renderFact( cat ) {
   //hit up the api for new fact
   $factNewBut.on('click', function(e){
     e.preventDefault();
+    $('.loading').show()
     $factContainer.empty();
     getNewFact();
   })
@@ -275,14 +283,16 @@ $(document).ready(function() {
   $(".loader").fadeOut("slow");
 })
 
+$('.loading').hide();
+$('.loading2').hide();
 
-$(document)
-  .ajaxStart(function () {
-      $('.loading').show();
-   })
-  .ajaxStop(function () {
-      $('.loading').hide();
-  });
+// $(document)
+//   .ajaxStart(function () {
+//       $('.loading').show();
+//    })
+//   .ajaxStop(function () {
+//       $('.loading').hide();
+//   });
 
 
 
