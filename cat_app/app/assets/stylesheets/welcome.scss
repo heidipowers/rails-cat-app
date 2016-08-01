@@ -238,9 +238,28 @@ button {
   background-color: $grey1;
   border: none;
   font-family: 'Roboto Condensed', sans-serif;
-  width: 200px;
+  width: 195px;
   font-size: 1em;
   text-transform: uppercase;
+}
+
+#facts div.hide {
+  text-align: center;
+  border-top: 1px dashed black;
+  padding-top: 1em;
+  background-color: #F0F0F0;
+}
+
+.hide button {
+  margin: 1em;
+}
+
+textarea {
+  resize: none;
+  overflow: auto;
+  width: 90%;
+  font-size: 1em;
+  margin: 0 1em;
 }
 
 footer {
