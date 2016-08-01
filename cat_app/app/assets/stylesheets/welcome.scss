@@ -95,16 +95,6 @@ h3 {
   text-align: center;
 }
 
-.loader {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background: url('./cat.svg') 50% 50% no-repeat rgb(249,249,249);
-}
-
 #images .image {
   width: $width;
   height: $height;
@@ -114,8 +104,8 @@ h3 {
   background-color: #000;
 }
 
-#cats-container {
-  min-height: 300px;
+#cats-container{
+  //min-height: 300px;
 }
 
 #facts div {
@@ -157,13 +147,13 @@ h3 {
 
 .fact-outer {
   background-color: #000;
-  min-height: 4em;
+  min-height: 320px;
   padding: 2em 0;
 }
 
 .image-outer {
    background-color: #efefef;
-   min-height: 4em;
+   min-height: 500px;
    padding: 2em 0;
 }
 
@@ -299,6 +289,35 @@ footer p {
 .footer-love a {
   font-family: 'Alex Brush', cursive;
   font-size: 1.5em;
+}
+
+//loader
+.loading, .loading2 {
+  width: 100%;
+  position: absolute;
+  background-color: rgba(255,255,255,.5);
+  height: 71%
+}
+
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('./cat.svg') 50% 50% no-repeat rgb(249,249,249);
+}
+
+.cat-loader{
+    animation:.8s rotateCat infinite linear;
+    margin-top: 125px;
+}
+
+@keyframes rotateCat{
+    0%{ transform:rotate(0deg); transform-origin:50% 50%; }
+    100%{ transform:rotate(360deg); }
 }
 
 
