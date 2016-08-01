@@ -107,7 +107,7 @@ function renderFact( cat ) {
 
   //add fact to db
   $factAddBut.on('click', function(e){
-    e.preventDefault
+    e.preventDefault()
     addFact($factText);
     $factContainer.empty()
     getNewFact();
