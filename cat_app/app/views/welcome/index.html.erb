@@ -1,0 +1,56 @@
+
+<header>
+  <div class="loader"></div>
+  <h1 class="center"><span class="letter-logo"></span>ommunity Cats</h1>
+  <hr>
+</header>
+
+
+<div id="cats-container">
+ <div class="fact-outer">
+    <div class="row contain">
+      <div id="community-fact" class="col-6">
+
+          <!--  cat fact will be rendered from api-->
+
+      </div>
+    </div>
+  </div>
+
+<div class="image-outer">
+  <div class="row contain">
+    <div id="community-image" class="col-6">
+
+        <!--  cat image will be rendered from api-->
+
+    </div>
+  </div>
+</div>
+
+<div class="bottom">
+  <div class="row contain">
+
+    <section class="col-4 col">
+      <div id="facts-container">
+        <h3><%= image_tag("cat.svg", class:"cat", :alt => "cat loader") %>Facts</h3>
+          <section id="facts">
+
+            <!--  cat facts will be rendered from db -->
+
+          </section>
+      </div>
+    </section>
+
+    <section class="col-8 col">
+      <div id="images-container">
+        <h3><%= image_tag("cat.svg", class:"cat", :alt => "cat loader") %>Images</h3>
+          <section id="images">
+
+            <!--  cat images will be rendered from db -->
+
+          </section>
+      </div>
+    </section>
+
+  </div>
+</div>

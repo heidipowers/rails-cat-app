@@ -1,0 +1,292 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$height: 187px;
+$width: 187px;
+
+$grey1: #D8D8D8 ;
+$grey2: #333;
+$grey3: #F8F8F8;
+$grey4: #B0B0B0;
+
+body {
+  background-color: $grey3;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+ul, ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+a {
+  text-decoration: none;
+  color: $grey2;
+  font-family: 'Alex Brush', cursive;
+}
+
+a:hover {
+  color: #fff;
+}
+
+button:hover {
+  background-color: $grey4;
+}
+
+.image-delete {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 1em;
+  height: 1em;
+  background-image: url("./x.svg");
+  margin: 5px;
+}
+
+.fact-delete, .update {
+  margin: 0 0 1em 1em;
+}
+
+.hide {
+  display:none;
+}
+
+.contain {
+  max-width: 80em;
+  margin: 0 auto;
+}
+
+.new-fact, .new-image {
+  margin-left: 1em;
+}
+
+header {
+  background: $grey1;
+}
+
+hr {
+  padding: 0;
+  margin: 0;
+}
+
+
+h1 {
+
+  font-family:'Lily Script One', cursive;
+  font-size: 4em;
+  border-bottom: 2px solid;
+  line-height: 0;
+  margin-top: 0;
+  padding-top: 1em;
+}
+
+h3 {
+  font-family: 'Akronim', cursive;
+  font-size: 4em;
+  margin-bottom: 0;
+  border-bottom: 1px solid black;
+  line-height: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('./cat.svg') 50% 50% no-repeat rgb(249,249,249);
+}
+
+#images .image {
+  width: $width;
+  height: $height;
+  display: inline-block;
+  margin: 15px;
+  position: relative;
+  background-color: #000;
+}
+
+#cats-container {
+  min-height: 300px;
+}
+
+#facts div {
+  margin: 20px 0;
+  background-color: rgba(255,255,255, .5);
+  position: relative;
+}
+
+#images {
+  background-color: rgba(255,255,255, .5);
+  margin: 1em 0 3em 0;
+}
+
+#facts p {
+  padding: 15px;
+  font-size: 1.2em;
+  color: $grey2;
+  font-family: 'Roboto', sans-serif;
+}
+
+.overlay {
+  width: $width;
+  height: $height;
+  background-color: #000;
+  opacity: 0;
+}
+
+.hidden  {
+  display: none;
+}
+
+.hideImage {
+    position: absolute;
+    cursor: pointer;
+    width: 80%;
+    margin: 0 10%;
+    top: 46%;
+}
+
+.fact-outer {
+  background-color: #000;
+  min-height: 4em;
+  padding: 2em 0;
+}
+
+.image-outer {
+   background-color: #efefef;
+   min-height: 4em;
+   padding: 2em 0;
+}
+
+#community-fact p {
+  font-family: 'Roboto Slab', serif;
+  font-size: 3em;
+  color: white;
+}
+
+.hold-buttons {
+  text-align: center;
+  margin-top: 1em;
+}
+
+
+#community-image {
+  text-align: center;
+}
+
+#community-image a {
+  display: block;
+}
+
+
+#images div a {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+}
+
+.col-4 {
+  width: 34%;
+  float: left;
+  padding: 0 5%;
+}
+
+.col-8 {
+  width: 51%;
+  float: left;
+  padding-right: 5%;
+}
+
+.col-6 {
+  width: 50%;
+  float: left;
+}
+
+
+.col:after {
+  clear: both;
+}
+
+.cat {
+  transform: rotate(50deg);
+  position: relative;
+  bottom: -4px;
+}
+
+.letter-logo {
+  background-image: url('./cat.svg');
+  display:inline-block;
+  background-size: cover;
+  height: 2em;
+  width: 2em;
+  repeat: no-repeat;
+}
+
+
+button {
+  padding: 10px;
+  border-radius: 1px;
+  background-color: $grey1;
+  border: none;
+  font-family: 'Roboto Condensed', sans-serif;
+  width: 200px;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+footer {
+    background-color: #909090;
+    clear: both;
+    position: relative;
+    z-index: 10;
+    min-height: 4em;
+    margin-top: -3em;
+  }
+
+footer .contain {
+  margin-top: 1em;
+}
+
+.footer-cat {
+  height: 30px;
+  width: 30px;
+}
+
+footer ul li {
+  display: inline-block;
+  margin: 0 1em;
+}
+
+footer a {
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-left: .5em;
+}
+
+footer p {
+  font-size: 1em;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: right;
+}
+
+.footer-love a {
+  font-family: 'Alex Brush', cursive;
+  font-size: 1.5em;
+}
+
+
+
+
+
+
+
+
+
