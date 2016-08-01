@@ -267,13 +267,15 @@ function deleteFact(e){
  }
 
 $(document).ready(function() {
-  //getCat();
+  getCat();
   getFacts();
   getImages();
 
   $(window).load(function() {
   $(".loader").fadeOut("slow");
 })
+
+
 
 
 });

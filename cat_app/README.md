@@ -15,8 +15,8 @@ The Community Cat app is about cats, and it's built on rails.
 # Special Thanks
 This project would not have been possible without the contributions of the following people and technologies:
 * [The Cat Api ](http://thecatapi.com/)
-*  [CatFacts Api ](http://catfacts-api.appspot.com/)
-*  Ruby, Rails, StackOverflow, Google, the internet, Google Fonts, and [Fizal](http://github.com/fizal619).
+* [CatFacts Api ](http://catfacts-api.appspot.com/)
+* Ruby, Rails, StackOverflow, Google, the internet, Google Fonts, and [Fizal](http://github.com/fizal619).
 ---
 
 
