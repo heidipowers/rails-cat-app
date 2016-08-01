@@ -6,10 +6,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href='https://fonts.googleapis.com/css?family=Alex+Brush|Lily+Script+One|Akronim|Roboto:400,100' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Alex+Brush|Lily+Script+One|Akronim|Roboto:400,100|Roboto+Condensed|Roboto+Slab:400,300' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
     <%= yield %>
   </body>
+  <%= render "layouts/footer" %>
 </html>

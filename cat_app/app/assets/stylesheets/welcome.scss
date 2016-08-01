@@ -12,24 +12,22 @@ $grey4: #B0B0B0;
 
 body {
   background-color: $grey3;
+  margin: 0;
+  padding: 0;
 }
 
 a {
   text-decoration: none;
   color: $grey2;
+  font-family: 'Alex Brush', cursive;
 }
 
-button {
-  padding: 10px;
-  font-size: 1em;
-  border-radius: 1px;
-  background-color: $grey4;
-  border: none;
-  font-family: 'Alex Brush', cursive;;
+a:hover {
+  color: #fff;
 }
 
 button:hover {
-  background-color: $grey1;
+  background-color: $grey4;
 }
 
 .image-delete {
@@ -55,8 +53,17 @@ button:hover {
   margin: 0 auto;
 }
 
+.new-fact, .new-image {
+  margin-left: 1em;
+}
+
 header {
   background: $grey1;
+}
+
+hr {
+  padding: 0;
+  margin: 0;
 }
 
 
@@ -72,7 +79,7 @@ h1 {
 
 h3 {
   font-family: 'Akronim', cursive;
-  font-size: 2em;
+  font-size: 4em;
   margin-bottom: 0;
 }
 
@@ -109,6 +116,10 @@ h3 {
   position: relative;
 }
 
+#images {
+  background-color: rgba(255,255,255, .5);
+}
+
 #facts p {
   padding: 1em;
   font-size: 1.2em;
@@ -128,11 +139,43 @@ h3 {
 }
 
 .hideImage {
-  position: absolute;
+    position: absolute;
     cursor: pointer;
     width: 80%;
     margin: 0 10%;
     top: 46%;
+}
+
+.fact-outer {
+  background-color: #000;
+  min-height: 4em;
+  padding: 2em 0;
+}
+
+.image-outer {
+   background-color: #efefef;
+   min-height: 4em;
+   padding: 2em 0;
+}
+
+#community-fact p {
+  font-family: 'Roboto Slab', serif;
+  font-size: 3em;
+  color: white;
+}
+
+.hold-buttons {
+  text-align: center;
+  margin-top: 1em;
+}
+
+
+#community-image {
+  text-align: center;
+}
+
+#community-image a {
+  display: block;
 }
 
 
@@ -140,7 +183,6 @@ h3 {
   position: absolute;
   bottom: 5%;
   left: 5%;
-  font-family: 'Alex Brush', cursive;
 }
 
 .col-4 {
@@ -153,6 +195,14 @@ h3 {
   width: 51%;
   float: left;
   padding-right: 5%;
+}
+
+.col-6 {
+
+}
+
+.col-6 {
+
 }
 
 .col:after {
@@ -172,6 +222,14 @@ h3 {
   repeat: no-repeat;
 }
 
-.bottom {
-  background-color: #efefef;
+
+button {
+  padding: 10px;
+  border-radius: 1px;
+  background-color: $grey1;
+  border: none;
+  font-family: 'Roboto Condensed', sans-serif;
+  width: 200px;
+  font-size: 1em;
+  text-transform: uppercase;
 }

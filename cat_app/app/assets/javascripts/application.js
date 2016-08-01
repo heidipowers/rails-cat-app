@@ -64,12 +64,14 @@ function renderImage( cat ) {
   let $link = $('<a target="_blank">').attr('href', copyright).text("Source")
   let $imgContainer = $('#community-image');
   let $img = $('<img>').attr('src', src);
-  let $imageAddBut = $('<button class="add-image add-btn">').text("Add Image")
-  let $imageNewBut = $('<button class="new-image new-btn">').text("Get New Image")
+  let $buttonDiv = $('<div class="hold-buttons">');
+  let $imageAddBut = $('<button class="add-image add-btn">').text("Pure Awesome")
+  let $imageNewBut = $('<button class="new-image new-btn">').text("Next")
 
 
   // render the image
-  $imgContainer.append( $img, $link, $imageAddBut, $imageNewBut );
+  $buttonDiv.append($imageAddBut, $imageNewBut)
+  $imgContainer.append( $img, $link, $buttonDiv);
 
   //add image to db
   $imageAddBut.on('click', function(e){
@@ -94,12 +96,14 @@ function renderFact( cat ) {
   let $factContainer = $('#community-fact');
   let $factText = cat.fact.facts.toString();
   let $fact = $('<p>').text($factText);
-  let $factAddBut = $('<button class="add-fact add-btn">').text("Add Fact");
-  let $factNewBut = $('<button class="new-fact new-btn">').text("Get New Fact")
+  let $buttonDiv = $('<div class="hold-buttons">');
+  let $factAddBut = $('<button class="add-fact add-btn">').text("Whaaa?!");
+  let $factNewBut = $('<button class="new-fact new-btn">').text("Meh...")
 
 
   //render the fact
-  $factContainer.append( $fact, $factAddBut, $factNewBut );
+  $buttonDiv.append($factAddBut, $factNewBut);
+  $factContainer.append( $fact, $buttonDiv );
 
   //add fact to db
   $factAddBut.on('click', function(e){
@@ -263,7 +267,7 @@ function deleteFact(e){
  }
 
 $(document).ready(function() {
-  //getCat();
+  getCat();
   getFacts();
   getImages();
 
